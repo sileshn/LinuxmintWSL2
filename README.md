@@ -1,39 +1,37 @@
-# FedoraWSL
-Fedora on WSL (Windows 10 FCU or later)
+# LinuxmintWSL
+Linuxmint on WSL2 (Windows 10 FCU or later)
 based on [wsldl](https://github.com/yuk7/wsldl)
 
-![screenshot](https://raw.githubusercontent.com/yosukes-dev/FedoraWSL/master/img/screenshot.png)
+![screenshot](https://raw.githubusercontent.com/sileshn/LinuxmintWSL/main/img/screenshot.png)
 
-[![CircleCI](https://circleci.com/gh/yosukes-dev/FedoraWSL.svg?style=svg)](https://circleci.com/gh/yosukes-dev/FedoraWSL2)
-[![Github All Releases](https://img.shields.io/github/downloads/yosukes-dev/FedoraWSL/total.svg?style=flat-square)](https://github.com/yosukes-dev/FedoraWSL/releases)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 ![License](https://img.shields.io/github/license/yosukes-dev/FedoraWSL.svg?style=flat-square)
 
-### [Download](https://github.com/yosukes-dev/FedoraWSL/releases)
-
-
-## Requirements
-* Windows 10 Fall Creators Update x64 or later. (Testing Environment: WSL:build.18363, WSL2:build.19592)
+## 💻 Requirements
+* Windows 10 1709 Fall Creators Update 64bit or later.
 * Windows Subsystem for Linux feature is enabled.
 
 ## Install
-#### 1. [Download](https://github.com/yosukes-dev/FedoraWSL/releases) installer zip
+1. [Download](https://github.com/sileshn/LinuxmintWSL/releases/latest) installer zip
+2. Extract all files in zip file to same directory
+3. Run Mint.exe to Extract rootfs and Register to WSL
 
-#### 2. Extract all files in zip file to same directory
+**Note:**
+Exe filename is using the instance name to register. If you rename it you can register with a diffrent name and have multiple installs.
 
-#### 3.Run Fedora.exe to Extract rootfs and Register to WSL
-Exe filename is using to the instance name to register.
-If you rename it you can register with a diffrent name and have multiple installs.
-
-## (Option)
-If you want to use WSL2, convert it with the following command.
+If you want to use WSL2 after install, convert it with the following command.
 ```dos
-wsl --set-version Fedora 2
+wsl --set-version Mint 2
+```
+
+You can also set wsl2 as default. Use the command below before running Mint.exe.
+```dos
+wsl --set-default-version 2
 ```
 
 ## How-to-Use(for Installed Instance)
 #### exe Usage
-```dos
+```
 Usage :
     <no args>
       - Open a new shell with your default settings.
@@ -49,11 +47,14 @@ Usage :
       - `--default-uid <uid>`: Set the default user uid for this distro to <uid>
       - `--append-path <on|off>`: Switch of Append Windows PATH to $PATH
       - `--mount-drive <on|off>`: Switch of Mount drives
+      - `--default-term <default|wt|flute>`: Set default terminal window
 
     get [setting]
       - `--default-uid`: Get the default user uid in this distro
       - `--append-path`: Get on/off status of Append Windows PATH to $PATH
       - `--mount-drive`: Get on/off status of Mount drives
+      - `--wsl-version`: Get WSL Version 1/2 for this distro
+      - `--default-term`: Get Default Terminal for this distro launcher
       - `--lxguid`: Get WSL GUID key for this distro
 
     backup [contents]
@@ -67,9 +68,71 @@ Usage :
       - Print this usage message.
 ```
 
+#### Just Run exe
+```cmd
+>{InstanceName}.exe
+[root@PC-NAME user]#
+```
 
-#### How to uninstall instance
+#### Run with command line
+```cmd
+>{InstanceName}.exe run uname -r
+4.4.0-43-Microsoft
+```
+
+#### Run with command line with path translation
+```cmd
+>{InstanceName}.exe runp echo C:\Windows\System32\cmd.exe
+/mnt/c/Windows/System32/cmd.exe
+```
+
+#### Change Default User(id command required)
+```cmd
+>{InstanceName}.exe config --default-user user
+
+>{InstanceName}.exe
+[user@PC-NAME dir]$
+```
+
+#### Set "Windows Terminal" as default terminal
+```cmd
+>{InstanceName}.exe config --default-term wt
+```
+
+## How to setup
+
+Open Mint.exe and run the following commands.
 ```dos
->Fedora.exe clean
+passwd
+useradd -m -G wheel -s /bin/bash <username>
+passwd <username>
+exit
+```
+Execute the command below in a windows cmd terminal from the directory where Mint.exe is installed.
+```dos
+>Mint.exe config --default-user <username>
+```
+
+## How to uninstall instance
+```dos
+>Mint.exe clean
+
+```
+
+## How to build
+
+#### Prerequisites
+
+Docker, tar, zip, unzip need to be installed.
+
+```dos
+git clone git@gitlab.com:sileshn/LinuxmintWSL.git
+cd LinuxmintWSL
+make
+
+```
+Copy the Linuxmint.zip file to a safe location and run the command below to clean.
+```dos
+make clean
 
 ```
