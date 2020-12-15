@@ -104,7 +104,7 @@ Usage :
 Open Mint.exe and run the following commands.
 ```dos
 passwd
-useradd -m -G wheel -s /bin/bash <username>
+useradd -m -s /bin/bash <username>
 passwd <username>
 exit
 ```
