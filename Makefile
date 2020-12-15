@@ -43,7 +43,7 @@ rootfs: base.tar
 
 base.tar:
 	@echo -e '\e[1;31mExporting base.tar using docker...\e[m'
-	docker run --name mintwsl linuxmintd/mint20-amd64 /bin/bash -c "apt-get update; apt-get full-upgrade -y"
+	docker run --name mintwsl linuxmintd/mint20-amd64 /bin/bash -c "apt-get update; apt-get full-upgrade -y; apt-get install -y apt-utils; unminimize; apt-get autoremove -y; apt-get clean;"
 	docker export --output=base.tar mintwsl
 	docker rm -f mintwsl
 
