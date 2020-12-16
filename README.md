@@ -1,15 +1,16 @@
 # LinuxmintWSL
-Linuxmint on WSL2 (Windows 10 FCU or later)
-based on [wsldl](https://github.com/yuk7/wsldl)
+Linuxmint on WSL2 (Windows 10 FCU or later) based on [wsldl](https://github.com/yuk7/wsldl).
 
 [![Screenshot-2020-12-15-134118.png](https://i.postimg.cc/dQCfPbNf/Screenshot-2020-12-15-134118.png)](https://postimg.cc/RqMdwDB1)
-
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 ![License](https://img.shields.io/github/license/yosukes-dev/FedoraWSL.svg?style=flat-square)
 
 ## 💻 Requirements
-* Windows 10 1709 Fall Creators Update 64bit or later.
-* Windows Subsystem for Linux feature is enabled.
+* For x64 systems: Version 1903 or higher, with Build 18362 or higher.
+* For ARM64 systems: Version 2004 or higher, with Build 19041 or higher.
+* Builds lower than 18362 do not support WSL 2.
+* Enable Windows Subsystem for Linux feature.
+* Download and install the Linux kernel update package from [here](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi).
 
 ## Install
 1. [Download](https://github.com/sileshn/LinuxmintWSL/releases/latest) installer zip
