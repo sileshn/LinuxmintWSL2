@@ -12,6 +12,8 @@ Linuxmint on WSL2 (Windows 10 FCU or later) based on [wsldl](https://github.com/
 * Enable Windows Subsystem for Linux feature.
 * Download and install the Linux kernel update package from [here](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi).
 
+For more details, check [this](https://docs.microsoft.com/en-us/windows/wsl/install-win10) microsoft document.
+
 ## Install
 1. [Download](https://github.com/sileshn/LinuxmintWSL/releases/latest) installer zip
 2. Extract all files in zip file to same directory
