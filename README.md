@@ -10,6 +10,13 @@ Linuxmint on WSL2 (Windows 10 FCU or later) based on [wsldl](https://github.com/
 * For ARM64 systems: Version 2004 or higher, with Build 19041 or higher.
 * Builds lower than 18362 do not support WSL 2.
 * Enable Windows Subsystem for Linux feature.
+```cmd
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+```
+* Enable Virtual Machine feature
+```cmd
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```
 * Download and install the Linux kernel update package from [here](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi).
 
 For more details, check [this](https://docs.microsoft.com/en-us/windows/wsl/install-win10) microsoft document.
