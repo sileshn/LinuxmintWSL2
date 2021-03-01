@@ -147,3 +147,25 @@ Copy the Linuxmint.zip file to a safe location and run the command below to clea
 make clean
 
 ```
+
+## How to run docker in LinuxmintWSL without using docker desktop.
+
+Delete older versions of docker if installed.
+```dos
+sudo apt-get remove docker docker-engine docker.io containerd runc
+
+```
+
+Execute the commands below to install docker.
+```dos
+sudo apt -y install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(. /etc/os-release; echo "$UBUNTU_CODENAME") stable"
+sudo apt update
+sudo apt install docker-ce
+sudo usermod -aG docker $USER
+```
+
+Follow [this](https://blog.nillsf.com/index.php/2020/06/29/how-to-automatically-start-the-docker-daemon-on-wsl2/) blog post for further details on how to set it up.
+
+[![Screenshot-2021-01-27-175029.png](https://i.postimg.cc/Z5vGPXwn/Screenshot-2021-01-27-175029.png)](https://postimg.cc/fVZqDqnQ)
