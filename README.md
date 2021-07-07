@@ -4,7 +4,7 @@ Linuxmint on WSL2 (Windows 10 FCU or later) based on [wsldl](https://github.com/
 [![Screenshot-2021-06-16-205341.png](https://i.postimg.cc/qqxZSBVk/Screenshot-2021-06-16-205341.png)](https://postimg.cc/wR3VspjP)
 [![Github All Releases](https://img.shields.io/github/downloads/sileshn/LinuxmintWSL/total.svg?style=flat-square)](https://github.com/sileshn/LinuxmintWSL/releases)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-![License](https://img.shields.io/github/license/yosukes-dev/FedoraWSL.svg?style=flat-square)
+[![License](https://img.shields.io/github/license/sileshn/LinuxmintWSL.svg?style=flat-square)](https://raw.githubusercontent.com/sileshn/LinuxmintWSL/main/LICENSE)
 
 ## 💻 Requirements
 * For x64 systems: Version 1903 or higher, with Build 18362 or higher.
