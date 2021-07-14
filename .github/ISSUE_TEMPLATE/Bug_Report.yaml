@@ -11,7 +11,7 @@ body:
   attributes:
     label: Requirements
     description: |
-      Tell us whether you have checked and completed the [prerequisite](https://github.com/sileshn/LinuxmintWSL#requirements)
+      Tell us whether you have checked and completed the [prerequisite](https://github.com/sileshn/LinuxmintWSL#-requirements)
     options:
       - label: "Yes"
       - label: "No"
