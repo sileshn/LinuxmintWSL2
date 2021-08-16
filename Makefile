@@ -1,4 +1,4 @@
-OUT_ZIP=Linuxmint.zip
+OUT_ZIP=LinuxmintWSL.zip
 LNCR_EXE=Mint.exe
 
 DLR=curl
