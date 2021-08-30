@@ -71,6 +71,9 @@ Usage :
     backup [contents]
       - `--tar`: Output backup.tar to the current directory.
       - `--reg`: Output settings registry file to the current directory.
+	  - `--tgz`: Output backup.tar.tar to the current directory.
+      - `--vhdx`: Output backup.ext4.vhdx to the current directory.
+      - `--vhdxgz`: Output backup.ext4.vhdx.gz to the current directory.
 
     clean
       - Uninstall that instance.
@@ -128,6 +131,38 @@ Execute the command below in a windows cmd terminal from the directory where Min
 ```dos
 >Mint.exe clean
 
+```
+
+## How to backup instance
+export to backup.tar.gz
+```cmd
+>Mint.exe backup --tgz
+```
+export to backup.ext4.vhdx.gz
+```cmd
+>Mint.exe backup --vhdxgz
+```
+
+## How to restore instance
+
+There are 2 ways to do it. 
+
+Rename the backup to rootfs.tar.gz and run Mint.exe
+
+(or)
+
+.tar(.gz)
+```cmd
+>Mint.exe install backup.tar.gz
+```
+.ext4.vhdx(.gz)
+```cmd
+>Mint.exe install backup.ext4.vhdx.gz
+```
+
+You may need to run the command below in some circumstances.
+```cmd
+>Mint.exe --default-uid 1000
 ```
 
 ## How to build
