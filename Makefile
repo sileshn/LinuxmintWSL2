@@ -56,4 +56,4 @@ clean:
 	-rm rootfs.tar.gz
 	-sudo rm -r rootfs
 	-rm base.tar
-	-docker rmi linuxmintd/mint20.2-amd64
+	-docker rmi -f linuxmintd/mint20.2-amd64
