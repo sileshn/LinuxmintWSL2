@@ -71,7 +71,7 @@ Usage :
     backup [contents]
       - `--tar`: Output backup.tar to the current directory.
       - `--reg`: Output settings registry file to the current directory.
-	  - `--tgz`: Output backup.tar.tar to the current directory.
+	  - `--tgz`: Output backup.tar.gz to the current directory.
       - `--vhdx`: Output backup.ext4.vhdx to the current directory.
       - `--vhdxgz`: Output backup.ext4.vhdx.gz to the current directory.
 
