@@ -43,7 +43,7 @@ rootfs: base.tar
 
 base.tar:
 	@echo -e '\e[1;31mExporting base.tar using docker...\e[m'
-	docker run --net=host --name mintwsl linuxmintd/mint20.2-amd64 /bin/bash -c "echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections; apt-get update; apt-get full-upgrade -y -q; apt-get install -y -q apt-transport-https apt-utils aria2 bash-completion build-essential ca-certificates curl dialog htop software-properties-common tree; ip link set dev eth0 mtu 1500; unminimize; apt-get autoremove -y; apt-get clean;"
+	docker run --net=host --name mintwsl linuxmintd/mint20.3-amd64 /bin/bash -c "echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections; apt-get update; apt-get full-upgrade -y -q; apt-get install -y -q apt-transport-https apt-utils aria2 bash-completion build-essential ca-certificates curl dialog htop software-properties-common tree; ip link set dev eth0 mtu 1500; unminimize; apt-get autoremove -y; apt-get clean;"
 	docker export --output=base.tar mintwsl
 	docker rm -f mintwsl
 
@@ -56,4 +56,4 @@ clean:
 	-rm rootfs.tar.gz
 	-sudo rm -r rootfs
 	-rm base.tar
-	-docker rmi -f linuxmintd/mint20.2-amd64
+	-docker rmi -f linuxmintd/mint20.3-amd64
