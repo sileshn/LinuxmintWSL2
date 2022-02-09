@@ -184,7 +184,7 @@ You may need to run the command below in some circumstances.
 
 #### Prerequisites
 
-Docker, tar, zip, unzip need to be installed.
+Docker, tar, zip, unzip, bsdtar need to be installed.
 
 ```dos
 git clone git@gitlab.com:sileshn/LinuxmintWSL.git
