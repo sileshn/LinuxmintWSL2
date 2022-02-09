@@ -118,7 +118,7 @@ Usage :
 
 ## How to setup
 
-Open Mint.exe and run the following commands.
+LinuxmintWSL will ask you to create a new user during its first run. If you chose to create a new user during initial setup, the steps below are not required unless you want to create additional users.
 ```dos
 passwd
 useradd -m -s /bin/bash <username>
