@@ -1,10 +1,11 @@
 # First run script for LinuxmintWSL
 
+cmd.exe /C mode con:cols=140 lines=36
 ylw=$(tput setaf 3)
 txtrst=$(tput sgr0)
 
+figlet -w 140 Welcome to LinuxmintWSL
 echo -e "\033[33;7mDo not interrupt or close the terminal window till script finishes execution!!!\033[0m"
-figlet -t Welcome to LinuxmintWSL
 echo -e "[automount]\n\n[network]\n\n[interop]\n\n[user]\n\n#The Boot setting is only available on Windows 11\n[boot]\n" >/etc/wsl.conf
 echo " "
 echo -e "\033[32mDo you want to create a new user?\033[m"
