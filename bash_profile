@@ -1,6 +1,11 @@
 # First run script for LinuxmintWSL
 
-cmd.exe /C mode con:cols=140 lines=36
+width=$(echo $COLUMNS)
+height=$(echo $LINES)
+if [ $width -lt 140 ]; then
+  cmd.exe /C mode con:cols=140 lines=36
+fi
+
 ylw=$(tput setaf 3)
 txtrst=$(tput sgr0)
 
@@ -34,12 +39,14 @@ select yn in "Yup" "Nope"; do
             sleep 1
           done
           rm ~/.bash_profile
+		  cmd.exe /C mode con:cols=$width lines=$height
           wsl.exe --terminate $WSL_DISTRO_NAME
         fi
       done
       ;;
     Nope)
       clear
+	  cmd.exe /C mode con:cols=$width lines=$height
       rm ~/.bash_profile
       break
       ;;
