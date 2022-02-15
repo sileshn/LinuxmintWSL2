@@ -28,7 +28,8 @@ select yn in "Yup" "Nope"; do
           echo -en "\033[1A\033[1A\033[2K"
           username=""
         else
-          useradd -m -s /bin/bash "$username"
+          useradd -m -g users -G sudo -s /bin/bash "$username"
+          echo "%sudo ALL=(ALL) ALL" >/etc/sudoers.d/sudo
           echo -en "\033[1B\033[1A\033[2K"
           passwd $username
           sed -i "/\[user\]/a default = $username" /etc/wsl.conf >/dev/null
