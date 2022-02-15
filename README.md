@@ -121,7 +121,8 @@ Usage :
 LinuxmintWSL will ask you to create a new user during its first run. If you chose to create a new user during initial setup, the steps below are not required unless you want to create additional users.
 ```dos
 passwd
-useradd -m -s /bin/bash <username>
+useradd -m -g users -G sudo -s /bin/bash <username>
+echo "%sudo ALL=(ALL) ALL" >/etc/sudoers.d/sudo
 passwd <username>
 exit
 ```
