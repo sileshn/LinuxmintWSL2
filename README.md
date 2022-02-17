@@ -1,7 +1,7 @@
 # LinuxmintWSL
 Linuxmint on WSL2 (Windows 10 FCU or later) based on [wsldl](https://github.com/yuk7/wsldl).
 
-[![Screenshot-2021-06-16-205341.png](https://i.postimg.cc/qqxZSBVk/Screenshot-2021-06-16-205341.png)](https://postimg.cc/wR3VspjP)
+<a href='http://postimg.cc/bZRYMkdJ' target='_blank'><img src='https://i.postimg.cc/bZRYMkdJ/Screenshot-2022-02-17-130338.png' border='0' alt='Screenshot-2022-02-17-130338'/></a> <a href='http://postimg.cc/B8QZGb1C' target='_blank'><img src='https://i.postimg.cc/B8QZGb1C/Screenshot-2022-02-17-130444.png' border='0' alt='Screenshot-2022-02-17-130444'/></a> <a href='http://postimg.cc/McP6Zw7J' target='_blank'><img src='https://i.postimg.cc/McP6Zw7J/Screenshot-2022-02-17-130506.png' border='0' alt='Screenshot-2022-02-17-130506'/></a> <a href='http://postimg.cc/Kk1ZRWfk' target='_blank'><img src='https://i.postimg.cc/Kk1ZRWfk/Screenshot-2022-02-17-130522.png' border='0' alt='Screenshot-2022-02-17-130522'/></a>
 [![Github All Releases](https://img.shields.io/github/downloads/sileshn/LinuxmintWSL/total.svg?style=flat-square)](https://github.com/sileshn/LinuxmintWSL/releases)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![License](https://img.shields.io/github/license/sileshn/LinuxmintWSL.svg?style=flat-square)](https://raw.githubusercontent.com/sileshn/LinuxmintWSL/main/LICENSE)
