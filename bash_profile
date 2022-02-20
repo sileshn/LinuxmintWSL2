@@ -1,18 +1,12 @@
 # First run script for LinuxmintWSL
 
-width=$(echo $COLUMNS)
-height=$(echo $LINES)
-if [ $width -lt 140 ]; then
-    cmd.exe /C mode con:cols=140 lines=36
-fi
-
 blu=$(tput setaf 4)
 grn=$(tput setaf 2)
 red=$(tput setaf 1)
 ylw=$(tput setaf 3)
 txtrst=$(tput sgr0)
 
-figlet -w 140 Welcome to LinuxmintWSL
+figlet -t -k -f /usr/share/figlet/mini.flf "Welcome to LinuxmintWSL"
 echo -e "\033[33;7mDo not interrupt or close the terminal window till script finishes execution!!!\n\033[0m"
 
 diskvol=$(mount | grep -m1 ext4 | cut -f 1 -d " ")
@@ -67,14 +61,12 @@ select yn in "Yup" "Nope"; do
                         sleep 1
                     done
                     rm ~/.bash_profile
-                    cmd.exe /C mode con:cols=$width lines=$height
                     wsl.exe --terminate $WSL_DISTRO_NAME
                 fi
             done
             ;;
         Nope)
             clear
-            cmd.exe /C mode con:cols=$width lines=$height
             rm ~/.bash_profile
             break
             ;;
