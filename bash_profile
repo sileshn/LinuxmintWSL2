@@ -75,6 +75,7 @@ if [ $disksize -le 263174212 ]; then
 
                 secs=5
                 echo " "
+                printf ${ylw}"Please grant powershell, elevated permissions to run diskpart when requested!!!\n"${txtrst}
                 while [ $secs -gt 0 ]; do
                     printf ${ylw}"\r\033[KThis window will close when diskpart launches to resize your VHD in %.d seconds. "${txtrst} $((secs--))
                     sleep 1
