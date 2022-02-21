@@ -14,7 +14,7 @@ figlet -t -k -f /usr/share/figlet/mini.flf "Welcome to LinuxmintWSL" | lolcat
 echo -e "\033[33;7mDo not interrupt or close the terminal window till script finishes execution!!!\n\033[0m"
 
 diskvol=$(mount | grep -m1 ext4 | cut -f 1 -d " ")
-sudo resize2fs $diskvol
+sudo resize2fs $diskvol >/dev/null 2>&1
 disksize=$(df -k | grep $diskvol | cut -f8 -d " ")
 
 if [ $disksize -le 263174212 ]; then
@@ -33,11 +33,11 @@ if [ $disksize -le 263174212 ]; then
                     else
                         wsl_path=$(wslpath -a $vhdpath)
                         if [ ! -f $wsl_path ]; then
-                            echo -e ${red}"Disk does not exist."${txtrst}
+                            echo -e ${red}"Disk does not exist.  "${txtrst}
                             echo -en "\033[1A\033[1A\033[2K"
                             vhdpath=""
                         else
-                            echo "select vdisk file=\"$vhdpath\"" | sudo tee -a ~/vhdresize.txt >/dev/null
+                            echo "select vdisk file=\"$vhdpath\"" | sudo tee -a ~/vhdresize.txt >/dev/null 2>&1
                             break
                         fi
                     fi
@@ -50,7 +50,20 @@ if [ $disksize -le 263174212 ]; then
                             vhdsize=0
                         else
                             echo -en "\033[1B\033[1A\033[2K"
-                            echo "expand vdisk maximum=$vhdsize" | sudo tee -a ~/vhdresize.txt >/dev/null
+                            echo "expand vdisk maximum=$vhdsize" | sudo tee -a ~/vhdresize.txt >/dev/null 2>&1
+                            echo -e "\n\033[37;7m$(<~/vhdresize.txt)\n\033[0m"
+                            echo -e ${grn}"Please review your input highlighted above. Is is ok to proceed?"${txtrst}
+                            select yn in "Proceed" "Edit"; do
+                                case $yn in
+                                    Proceed)
+                                        break
+                                        ;;
+                                    Edit)
+                                        "${EDITOR:-nano}" ~/vhdresize.txt
+                                        break
+                                        ;;
+                                esac
+                            done
                             cp ~/vhdresize.txt /mnt/c/Users/Public
                             break
                         fi
