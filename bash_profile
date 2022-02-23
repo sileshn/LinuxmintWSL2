@@ -8,23 +8,30 @@ red=$(tput setaf 1)
 ylw=$(tput setaf 3)
 txtrst=$(tput sgr0)
 
-test -f /mnt/c/Users/Public/vhdresize.txt && rm /mnt/c/Users/Public/vhdresize.txt
-test -f ~/vhdresize.txt && rm ~/vhdresize.txt
-figlet -t -k -f /usr/share/figlet/mini.flf "Welcome to LinuxmintWSL" | lolcat
-echo -e "\033[33;7mDo not interrupt or close the terminal window till script finishes execution!!!\n\033[0m"
-
 diskvol=$(mount | grep -m1 ext4 | cut -f 1 -d " ")
 sudo resize2fs $diskvol >/dev/null 2>&1
 disksize=$(df -k | grep $diskvol | cut -f8 -d " ")
+osname=$(/mnt/c/Windows/System32/wbem/wmic.exe os get Caption | sed -n 2p)
+width=$(echo $COLUMNS)
+
+if [ $width -gt 120 ]; then
+    width=120
+fi
+
+test -f /mnt/c/Users/Public/vhdresize.txt && rm /mnt/c/Users/Public/vhdresize.txt
+test -f /mnt/c/Users/Public/shutdown.cmd && rm /mnt/c/Users/Public/shutdown.cmd
+test -f ~/vhdresize.txt && rm ~/vhdresize.txt
+test -f ~/shutdown.cmd && rm ~/shutdown.cmd
+figlet -t -k -f /usr/share/figlet/mini.flf "Welcome to LinuxmintWSL" | lolcat
+echo -e "\033[33;7mDo not interrupt or close the terminal window till script finishes execution!!!\n\033[0m"
 
 if [ $disksize -le 263174212 ]; then
-    echo -e ${ylw}"Your virtual hard disk has a maximum size of 256GB. If your distribution grows more than 256GB, you will see disk space errors. This can be fixed by expanding the virtual hard disk size and making WSL aware of the increase in file system size. For more information, visit this site (\033[36mhttps://docs.microsoft.com/en-us/windows/wsl/vhd-size\033[33m).\n"${txtrst} | fold -sw 120
+    echo -e ${ylw}"Your virtual hard disk has a maximum size of 256GB. If your distribution grows more than 256GB, you will see disk space errors. This can be fixed by expanding the virtual hard disk size and making WSL aware of the increase in file system size. For more information, visit this site (\033[36mhttps://docs.microsoft.com/en-us/windows/wsl/vhd-size\033[33m).\n"${txtrst} | fold -sw $width
     echo -e ${grn}"Would you like to resize your virtual hard disk?"${txtrst}
     select yn in "Yup" "Nope"; do
         case $yn in
             Yup)
                 echo " "
-                test -f ~/vhdresize.txt || touch ~/vhdresize.txt
                 while read -p ${mgn}"Path to virtual disk (e.g. C:\Users\silesh\wsl\ext4.vhdx) : "${txtrst} -r vhdpath; do
                     if [ x$vhdpath = "x" ]; then
                         echo -e ${red}"Path cannot be blank."${txtrst}
@@ -54,7 +61,7 @@ if [ $disksize -le 263174212 ]; then
                             echo " "
                             printf "%s" "$(<~/vhdresize.txt)"
                             echo " "
-                            echo -e ${grn}"\nPlease review your input highlighted above. Is is ok to proceed?"${txtrst}
+                            echo -e ${grn}"\nPlease review your input displayed above. Is is ok to proceed?"${txtrst}
                             select yn in "Proceed" "Edit"; do
                                 case $yn in
                                     Proceed)
@@ -66,7 +73,11 @@ if [ $disksize -le 263174212 ]; then
                                         ;;
                                 esac
                             done
+                            echo "@echo off" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
+                            echo "wsl --shutdown" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
+                            echo "diskpart /s C:\Users\Public\vhdresize.txt" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
                             cp ~/vhdresize.txt /mnt/c/Users/Public
+                            cp ~/shutdown.cmd /mnt/c/Users/Public
                             break
                         fi
                     else
@@ -75,15 +86,12 @@ if [ $disksize -le 263174212 ]; then
                     fi
                 done
 
-                secs=5
                 echo " "
-                printf ${ylw}"Please grant powershell, elevated permissions to run diskpart when requested!!!\n"${txtrst}
-                while [ $secs -gt 0 ]; do
-                    printf ${ylw}"\r\033[KThis window will close when diskpart launches to resize your VHD in %.d seconds. "${txtrst} $((secs--))
-                    sleep 1
-                done
-                powershell.exe -command "Start-Process -Verb RunAs 'diskpart.exe' -ArgumentList '/s C:\Users\Public\vhdresize.txt' -WindowStyle Hidden"
-                wsl.exe --shutdown $WSL_DISTRO_NAME
+                printf ${ylw}"Please grant powershell elevated permissions to run diskpart when requested!!!\n"${txtrst}
+                printf ${ylw}"This window will close in 3 seconds...\n"${txtrst}
+                sleep 3
+                powershell.exe -command "Start-Process -Verb Open -FilePath 'shutdown.cmd' -WorkingDirectory 'C:\Users\Public' -WindowStyle Hidden"
+                exec sleep 0
                 ;;
             Nope)
                 break
@@ -92,7 +100,7 @@ if [ $disksize -le 263174212 ]; then
     done
 fi
 
-echo -e ${grn}"\nDo you want to create a new user?"${txtrst}
+echo -e ${grn}"Do you want to create a new user?"${txtrst}
 select yn in "Yup" "Nope"; do
     case $yn in
         Yup)
@@ -112,14 +120,16 @@ select yn in "Yup" "Nope"; do
                     echo -en "\033[1B\033[1A\033[2K"
                     passwd $username
                     sed -i "/\[user\]/a default = $username" /etc/wsl.conf >/dev/null
+                    echo "@echo off" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
+                    echo "wsl.exe --terminate $WSL_DISTRO_NAME" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
+                    echo "del C:\Users\Public\shutdown.cmd" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
+                    cp ~/shutdown.cmd /mnt/c/Users/Public
                     echo " "
-                    secs=5
-                    while [ $secs -gt 0 ]; do
-                        printf ${ylw}"\r\033[KSystem needs to be restarted. Shutting down in %.d seconds."${txtrst} $((secs--))
-                        sleep 1
-                    done
+                    printf ${ylw}"\r\033[KSystem will terminate in 3 seconds to set the new user as default!!!"${txtrst}
+                    sleep 3
                     rm ~/.bash_profile
-                    wsl.exe --terminate $WSL_DISTRO_NAME
+                    powershell.exe -command "Start-Process -Verb Open -FilePath 'shutdown.cmd' -WorkingDirectory 'C:\Users\Public' -WindowStyle Hidden"
+                    exec sleep 0
                 fi
             done
             ;;
