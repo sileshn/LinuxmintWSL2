@@ -76,6 +76,11 @@ if [ $disksize -le 263174212 ]; then
                             echo "@echo off" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
                             echo "wsl --shutdown" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
                             echo "diskpart /s C:\Users\Public\vhdresize.txt" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
+                            if env | grep "WT_SESSION" >/dev/null 2>&1; then
+                                echo "wt.exe -w 0 nt wsl.exe -d $WSL_DISTRO_NAME" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
+                            else
+                                echo "cmd /c start \"$WSL_DISTRO_NAME\" wsl.exe -d $WSL_DISTRO_NAME" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
+                            fi
                             cp ~/vhdresize.txt /mnt/c/Users/Public
                             cp ~/shutdown.cmd /mnt/c/Users/Public
                             break
@@ -88,8 +93,8 @@ if [ $disksize -le 263174212 ]; then
 
                 echo " "
                 printf ${ylw}"Please grant powershell elevated permissions to run diskpart when requested!!!\n"${txtrst}
-                printf ${ylw}"This window will close in 3 seconds...\n"${txtrst}
-                sleep 3
+                printf ${ylw}"LinuxmintWSL will restart after disk has been resized!!\n"${txtrst}
+                sleep 2
                 powershell.exe -command "Start-Process -Verb Open -FilePath 'shutdown.cmd' -WorkingDirectory 'C:\Users\Public' -WindowStyle Hidden"
                 exec sleep 0
                 ;;
@@ -122,11 +127,16 @@ select yn in "Yup" "Nope"; do
                     sed -i "/\[user\]/a default = $username" /etc/wsl.conf >/dev/null
                     echo "@echo off" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
                     echo "wsl.exe --terminate $WSL_DISTRO_NAME" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
+                    if env | grep "WT_SESSION" >/dev/null 2>&1; then
+                        echo "wt.exe -w 0 nt wsl.exe -d $WSL_DISTRO_NAME" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
+                    else
+                        echo "cmd /c start \"$WSL_DISTRO_NAME\" wsl.exe -d $WSL_DISTRO_NAME" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
+                    fi
                     echo "del C:\Users\Public\shutdown.cmd" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
                     cp ~/shutdown.cmd /mnt/c/Users/Public
                     echo " "
-                    printf ${ylw}"\r\033[KSystem will terminate in 3 seconds to set the new user as default!!!"${txtrst}
-                    sleep 3
+                    printf ${ylw}"\r\033[KTo set the new user as the default user, LinuxmintWSL will terminate in 2 seconds and restart!!!"${txtrst}
+                    sleep 2
                     rm ~/.bash_profile
                     powershell.exe -command "Start-Process -Verb Open -FilePath 'shutdown.cmd' -WorkingDirectory 'C:\Users\Public' -WindowStyle Hidden"
                     exec sleep 0
