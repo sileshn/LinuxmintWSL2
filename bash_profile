@@ -79,7 +79,7 @@ if [ $disksize -le 263174212 ]; then
                             if env | grep "WT_SESSION" >/dev/null 2>&1; then
                                 echo "wt.exe -w 0 nt wsl.exe -d $WSL_DISTRO_NAME" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
                             else
-                                echo "cmd /c start \"$WSL_DISTRO_NAME\" wsl.exe -d $WSL_DISTRO_NAME" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
+                                echo "cmd /c start \"$WSL_DISTRO_NAME\" wsl.exe --cd ~ -d $WSL_DISTRO_NAME" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
                             fi
                             cp ~/vhdresize.txt /mnt/c/Users/Public
                             cp ~/shutdown.cmd /mnt/c/Users/Public
@@ -130,7 +130,7 @@ select yn in "Yup" "Nope"; do
                     if env | grep "WT_SESSION" >/dev/null 2>&1; then
                         echo "wt.exe -w 0 nt wsl.exe -d $WSL_DISTRO_NAME" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
                     else
-                        echo "cmd /c start \"$WSL_DISTRO_NAME\" wsl.exe -d $WSL_DISTRO_NAME" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
+                        echo "cmd /c start \"$WSL_DISTRO_NAME\" wsl.exe --cd ~ -d $WSL_DISTRO_NAME" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
                     fi
                     echo "del C:\Users\Public\shutdown.cmd" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
                     cp ~/shutdown.cmd /mnt/c/Users/Public
