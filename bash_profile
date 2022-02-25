@@ -14,26 +14,26 @@ disksize=$(df -k | grep $diskvol | cut -f8 -d " ")
 osname=$(/mnt/c/Windows/System32/wbem/wmic.exe os get Caption | sed -n 2p)
 width=$(echo $COLUMNS)
 
-if [ $width -gt 120 ]; then
+if [ "$width" -gt 120 ]; then
     width=120
 fi
 
-test -f /mnt/c/Users/Public/vhdresize.txt && rm /mnt/c/Users/Public/vhdresize.txt
-test -f /mnt/c/Users/Public/shutdown.cmd && rm /mnt/c/Users/Public/shutdown.cmd
-test -f ~/vhdresize.txt && rm ~/vhdresize.txt
-test -f ~/shutdown.cmd && rm ~/shutdown.cmd
+test -e /mnt/c/Users/Public/vhdresize.txt && rm /mnt/c/Users/Public/vhdresize.txt
+test -e /mnt/c/Users/Public/shutdown.cmd && rm /mnt/c/Users/Public/shutdown.cmd
+test -e ~/vhdresize.txt && rm ~/vhdresize.txt
+test -e ~/shutdown.cmd && rm ~/shutdown.cmd
 figlet -t -k -f /usr/share/figlet/mini.flf "Welcome to LinuxmintWSL" | lolcat
 echo -e "\033[33;7mDo not interrupt or close the terminal window till script finishes execution!!!\n\033[0m"
 
-if [ $disksize -le 263174212 ]; then
+if [ "$disksize" -le 263174212 ]; then
     echo -e ${ylw}"Your virtual hard disk has a maximum size of 256GB. If your distribution grows more than 256GB, you will see disk space errors. This can be fixed by expanding the virtual hard disk size and making WSL aware of the increase in file system size. For more information, visit this site (\033[36mhttps://docs.microsoft.com/en-us/windows/wsl/vhd-size\033[33m).\n"${txtrst} | fold -sw $width
     echo -e ${grn}"Would you like to resize your virtual hard disk?"${txtrst}
-    select yn in "Yup" "Nope"; do
+    select yn in "Yes" "No"; do
         case $yn in
-            Yup)
+            Yes)
                 echo " "
                 while read -p ${mgn}"Path to virtual disk (e.g. C:\Users\silesh\wsl\ext4.vhdx) : "${txtrst} -r vhdpath; do
-                    if [ x$vhdpath = "x" ]; then
+                    if [ "x$vhdpath" = "x" ]; then
                         echo -e ${red}"Path cannot be blank."${txtrst}
                         echo -en "\033[1A\033[1A\033[2K"
                         vhdpath=""
@@ -51,7 +51,7 @@ if [ $disksize -le 263174212 ]; then
                 done
                 while read -p ${mgn}"Size of virtual disk in MegaBytes(e.g. 512000 for 512GB) : "${txtrst} vhdsize; do
                     if [[ $vhdsize =~ ^-?[0-9]+$ ]]; then
-                        if [ $vhdsize -le 256000 ]; then
+                        if [ "$vhdsize" -le 256000 ]; then
                             echo -e ${red}"Disk size should be greater than 256000 MegaBytes."${txtrst}
                             echo -en "\033[1A\033[1A\033[2K"
                             vhdsize=0
@@ -98,7 +98,7 @@ if [ $disksize -le 263174212 ]; then
                 powershell.exe -command "Start-Process -Verb Open -FilePath 'shutdown.cmd' -WorkingDirectory 'C:\Users\Public' -WindowStyle Hidden"
                 exec sleep 0
                 ;;
-            Nope)
+            No)
                 break
                 ;;
         esac
@@ -106,12 +106,12 @@ if [ $disksize -le 263174212 ]; then
 fi
 
 echo -e ${grn}"Do you want to create a new user?"${txtrst}
-select yn in "Yup" "Nope"; do
+select yn in "Yes" "No"; do
     case $yn in
-        Yup)
+        Yes)
             echo " "
             while read -p "Please enter the username you wish to create : " username; do
-                if [ x$username = "x" ]; then
+                if [ "x$username" = "x" ]; then
                     echo -e ${red}" Blank username entered. Try again!!!"${txtrst}
                     echo -en "\033[1A\033[1A\033[2K"
                     username=""
@@ -143,7 +143,7 @@ select yn in "Yup" "Nope"; do
                 fi
             done
             ;;
-        Nope)
+        No)
             clear
             rm ~/.bash_profile
             break
