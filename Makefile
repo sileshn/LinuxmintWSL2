@@ -1,4 +1,4 @@
-OUT_ZIP=LinuxmintWSL.zip
+OUT_ZIP=LinuxmintlmdeWSL.zip
 LNCR_EXE=Mint.exe
 
 DLR=curl
@@ -45,7 +45,7 @@ rootfs: base.tar
 
 base.tar:
 	@echo -e '\e[1;31mExporting base.tar using docker...\e[m'
-	docker run --net=host --name mintwsl linuxmintd/mint20.3-amd64 /bin/bash -c "echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections; apt-get install apt-utils -y -q; apt-get update; apt-get full-upgrade -y -q; apt-get install -y -q apt-transport-https apt-utils aria2 bash-completion build-essential ca-certificates curl dialog figlet htop iputils-ping lolcat software-properties-common tree; unminimize; apt-get autoremove -y; apt-get clean;"
+	docker run --net=host --name mintwsl linuxmintd/lmde5-amd64 /bin/bash -c "echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections; apt-get install apt-utils -y -q; apt-get update; apt-get full-upgrade -y -q; apt-get install -y -q apt-transport-https apt-utils aria2 bash-completion build-essential ca-certificates curl dialog figlet htop iputils-ping lolcat software-properties-common tree; gem install lolcat; apt-get autoremove -y; apt-get clean;"
 	docker export --output=base.tar mintwsl
 	docker rm -f mintwsl
 
@@ -58,4 +58,4 @@ clean:
 	-rm rootfs.tar.gz
 	-sudo rm -r rootfs
 	-rm base.tar
-	-docker rmi -f linuxmintd/mint20.3-amd64
+	-docker rmi -f linuxmintd/lmde5-amd64
