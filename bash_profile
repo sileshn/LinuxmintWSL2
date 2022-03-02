@@ -99,7 +99,7 @@ if [ "$disksize" -le 263174212 ]; then
                     sleep 1
                 done
 
-                powershell.exe -command "Start-Process -Verb Open -FilePath 'shutdown.cmd' -WorkingDirectory 'C:\Users\Public' -WindowStyle Hidden"
+                /mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -command "Start-Process -Verb Open -FilePath 'shutdown.cmd' -WorkingDirectory 'C:\Users\Public' -WindowStyle Hidden"
                 exec sleep 0
                 ;;
             No)
@@ -147,7 +147,7 @@ select yn in "Yes" "No"; do
                     done
 
                     rm ~/.bash_profile
-                    powershell.exe -command "Start-Process -Verb Open -FilePath 'shutdown.cmd' -WorkingDirectory 'C:\Users\Public' -WindowStyle Hidden"
+                    /mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -command "Start-Process -Verb Open -FilePath 'shutdown.cmd' -WorkingDirectory 'C:\Users\Public' -WindowStyle Hidden"
                     exec sleep 0
                 fi
             done
