@@ -1,5 +1,5 @@
-# LinuxmintWSL
-Linuxmint on WSL2 (Windows 10 FCU or later) based on [wsldl](https://github.com/yuk7/wsldl).
+# LinuxmintlmdeWSL
+Linuxmintlmde on WSL2 (Windows 10 FCU or later) based on [wsldl](https://github.com/yuk7/wsldl).
 
 <a href='http://postimg.cc/bdZc1njb' target='_blank'><img src='https://i.postimg.cc/bdZc1njb/Screenshot-2022-02-21-144953.png' border='0' alt='Screenshot-2022-02-21-144953'/></a> <a href='http://postimg.cc/ThB80PRs' target='_blank'><img src='https://i.postimg.cc/ThB80PRs/Screenshot-2022-02-21-145017.png' border='0' alt='Screenshot-2022-02-21-145017'/></a> <a href='http://postimg.cc/NyR83pTT' target='_blank'><img src='https://i.postimg.cc/NyR83pTT/Screenshot-2022-02-21-154658.png' border='0' alt='Screenshot-2022-02-21-154658'/></a> <a href='http://postimg.cc/bD80pkH5' target='_blank'><img src='https://i.postimg.cc/bD80pkH5/Screenshot-2022-02-21-154737.png' border='0' alt='Screenshot-2022-02-21-154737'/></a> <a href='http://postimg.cc/MXC4Rr52' target='_blank'><img src='https://i.postimg.cc/MXC4Rr52/Screenshot-2022-02-21-145204.png' border='0' alt='Screenshot-2022-02-21-145204'/></a>  <a href='http://postimg.cc/B8QZGb1C' target='_blank'><img src='https://i.postimg.cc/B8QZGb1C/Screenshot-2022-02-17-130444.png' border='0' alt='Screenshot-2022-02-17-130444'/></a> <a href='http://postimg.cc/McP6Zw7J' target='_blank'><img src='https://i.postimg.cc/McP6Zw7J/Screenshot-2022-02-17-130506.png' border='0' alt='Screenshot-2022-02-17-130506'/></a> <a href='http://postimg.cc/Kk1ZRWfk' target='_blank'><img src='https://i.postimg.cc/Kk1ZRWfk/Screenshot-2022-02-17-130522.png' border='0' alt='Screenshot-2022-02-17-130522'/></a>
 [![Github All Releases](https://img.shields.io/github/downloads/sileshn/LinuxmintWSL/total.svg?style=flat-square)](https://github.com/sileshn/LinuxmintWSL/releases)
@@ -7,11 +7,11 @@ Linuxmint on WSL2 (Windows 10 FCU or later) based on [wsldl](https://github.com/
 [![License](https://img.shields.io/github/license/sileshn/LinuxmintWSL.svg?style=flat-square)](https://raw.githubusercontent.com/sileshn/LinuxmintWSL/main/LICENSE)
 
 ## Features and important information
-LinuxmintWSL has the following features during the installation stage.
+LinuxmintlmdeWSL has the following features during the installation stage.
 * Increase virtual disk size from the default 256GB
 * Create a new user and set the user as default
 
-LinuxmintWSL includes a wsl.conf file which only has section headers. Users can use this to configure the distro to their liking. You can read more about wsl.conf and its configuration settings [here](https://docs.microsoft.com/en-us/windows/wsl/wsl-config).
+LinuxmintlmdeWSL includes a wsl.conf file which only has section headers. Users can use this to configure the distro to their liking. You can read more about wsl.conf and its configuration settings [here](https://docs.microsoft.com/en-us/windows/wsl/wsl-config).
 
 ## Requirements
 * For x64 systems: Version 1903 or higher, with Build 18362 or higher.
@@ -122,7 +122,7 @@ Usage :
 
 ## How to setup
 
-LinuxmintWSL will ask you to create a new user during its first run. If you chose to create a new user during initial setup, the steps below are not required unless you want to create additional users.
+LinuxmintlmdeWSL will ask you to create a new user during its first run. If you chose to create a new user during initial setup, the steps below are not required unless you want to create additional users.
 ```dos
 passwd
 useradd -m -g users -G sudo -s /bin/bash <username>
@@ -194,16 +194,17 @@ Docker, tar, zip, unzip, bsdtar need to be installed.
 ```dos
 git clone git@gitlab.com:sileshn/LinuxmintWSL.git
 cd LinuxmintWSL
+git checkout debian
 make
 
 ```
-Copy the Linuxmint.zip file to a safe location and run the command below to clean.
+Copy the LinuxmintlmdeWSL.zip file to a safe location and run the command below to clean.
 ```dos
 make clean
 
 ```
 
-## How to run docker in LinuxmintWSL without using docker desktop.
+## How to run docker in LinuxmintlmdeWSL without using docker desktop.
 
 Delete older versions of docker if installed.
 ```dos
