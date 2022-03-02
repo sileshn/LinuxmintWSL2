@@ -25,6 +25,8 @@ test -e ~/shutdown.cmd && rm ~/shutdown.cmd
 figlet -t -k -f /usr/share/figlet/mini.flf "Welcome to LinuxmintWSL" | lolcat
 echo -e "\033[33;7mDo not interrupt or close the terminal window till script finishes execution!!!\n\033[0m"
 
+sed -i '/export PATH/i \\nPATH=\$PATH:/mnt/c/Windows:/mnt/c/Windows/System32:/mnt/c/Windows/System32/WindowsPowerShell/v1.0' /etc/profile
+
 if [ "$disksize" -le 263174212 ]; then
     echo -e ${grn}"LinuxmintWSL's VHD has a default maximum size of 256GB. Disk space errors which occur if size exceeds 256GB can be fixed by expanding the VHD. Would you like to resize your VHD? More information on this process is available at \033[36mhttps://docs.microsoft.com/en-us/windows/wsl/vhd-size\033[32m."${txtrst} | fold -sw $width
     select yn in "Yes" "No"; do
