@@ -10,7 +10,7 @@ txtrst=$(tput sgr0)
 
 diskvol=$(mount | grep -m1 ext4 | cut -f 1 -d " ")
 sudo resize2fs $diskvol >/dev/null 2>&1
-disksize=$(df -k | grep $diskvol | cut -f8 -d " ")
+disksize=$(sudo blockdev --getsize64 $diskvol)
 osname=$(/mnt/c/Windows/System32/wbem/wmic.exe os get Caption | sed -n 2p)
 width=$(echo $COLUMNS)
 
@@ -27,7 +27,7 @@ echo -e "\033[33;7mDo not interrupt or close the terminal window till script fin
 
 sed -i '/export PATH/i \\nPATH=\$PATH:/mnt/c/Windows:/mnt/c/Windows/System32:/mnt/c/Windows/System32/WindowsPowerShell/v1.0' /etc/profile
 
-if [ "$disksize" -le 263174212 ]; then
+if [ "$disksize" -le 274877906944 ]; then
     echo -e ${grn}"LinuxmintWSL's VHD has a default maximum size of 256GB. Disk space errors which occur if size exceeds 256GB can be fixed by expanding the VHD. Would you like to resize your VHD? More information on this process is available at \033[36mhttps://docs.microsoft.com/en-us/windows/wsl/vhd-size\033[32m."${txtrst} | fold -sw $width
     select yn in "Yes" "No"; do
         case $yn in
