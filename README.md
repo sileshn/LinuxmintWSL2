@@ -30,7 +30,7 @@ LinuxmintWSL includes a wsl.conf file which only has section headers. Users can 
 	```cmd
 	dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 	```
-	* Download and install the latest Linux kernel update package from [here](https://www.catalog.update.microsoft.com/Search.aspx?q=wsl). Its a cab file. Open and 	extract the exe file within using 7zip/winzip/winrar.
+	* Download and install the latest Linux kernel update package from [here](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi).
 
 ## Install
 1. [Download](https://github.com/sileshn/LinuxmintWSL/releases/latest) installer zip
