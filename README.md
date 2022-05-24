@@ -21,7 +21,7 @@ LinuxmintlmdeWSL includes a wsl.conf file which only has section headers. Users 
 	```cmd
 	wsl.exe --install
 	```
-* If you are running Windows 10 lower then version 2004, follow the steps below. For more details, check [this](https://docs.microsoft.com/en-us/windows/wsl/install-win10) microsoft document.
+* If you are running Windows 10 lower then version 2004, follow the steps below. For more details, check [this](https://docs.microsoft.com/en-us/windows/wsl/install-manual) microsoft document.
 	* Enable Windows Subsystem for Linux feature.
 	```cmd
 	dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
