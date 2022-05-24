@@ -21,7 +21,7 @@ LinuxmintlmdeWSL includes a wsl.conf file which only has section headers. Users 
 	```cmd
 	wsl.exe --install
 	```
-* If you are running Windows 10 lower then version 2004, follow the steps below. For more details, check [this](https://docs.microsoft.com/en-us/windows/wsl/install-manual) microsoft document.
+* If you are running Windows 10 lower then version 2004, follow the steps below to install requirements manually. For more details, check [this](https://docs.microsoft.com/en-us/windows/wsl/install-manual) microsoft document.
 	* Enable Windows Subsystem for Linux feature.
 	```cmd
 	dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
@@ -33,22 +33,16 @@ LinuxmintlmdeWSL includes a wsl.conf file which only has section headers. Users 
 	* Download and install the latest Linux kernel update package from [here](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi).
 
 ## Install
-1. [Download](https://github.com/sileshn/LinuxmintWSL/releases/latest) installer zip
-2. Extract all files in zip file to same directory
-3. Run Mint.exe to Extract rootfs and Register to WSL
+* [Download](https://github.com/sileshn/LinuxmintWSL/releases/latest) installer zip
+* Extract all files in zip file to same directory
+* Set version 2 as default. Note that this step is required only for manual installation.
+  ```dos
+  wsl --set-default-version 2
+  ```
+* Run Mint.exe to extract rootfs and register to WSL
 
 **Note:**
 Exe filename is using the instance name to register. If you rename it you can register with a diffrent name and have multiple installs.
-
-If you want to use WSL2 after install, convert it with the following command.
-```dos
-wsl --set-version Mint 2
-```
-
-You can also set wsl2 as default. Use the command below before running Mint.exe.
-```dos
-wsl --set-default-version 2
-```
 
 ## How-to-Use(for Installed Instance)
 #### exe Usage
