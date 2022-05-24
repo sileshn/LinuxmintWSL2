@@ -17,17 +17,20 @@ LinuxmintlmdeWSL includes a wsl.conf file which only has section headers. Users 
 * For x64 systems: Version 1903 or higher, with Build 18362 or higher.
 * For ARM64 systems: Version 2004 or higher, with Build 19041 or higher.
 * Builds lower than 18362 do not support WSL 2.
-* Enable Windows Subsystem for Linux feature.
-```cmd
-dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
-```
-* Enable Virtual Machine feature
-```cmd
-dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-```
-* Download and install the latest Linux kernel update package from [here](https://www.catalog.update.microsoft.com/Search.aspx?q=wsl). Its a cab file. Open and extract the exe file within using 7zip/winzip/winrar.
-
-For more details, check [this](https://docs.microsoft.com/en-us/windows/wsl/install-win10) microsoft document.
+* If you are running Windows 10 version 2004 or higher, you can install all components required to run wsl2 with a single command. This will install ubuntu by default. More details are available [here](https://devblogs.microsoft.com/commandline/install-wsl-with-a-single-command-now-available-in-windows-10-version-2004-and-higher/).
+	```cmd
+	wsl.exe --install
+	```
+* If you are running Windows 10 lower then version 2004, follow the steps below. For more details, check [this](https://docs.microsoft.com/en-us/windows/wsl/install-win10) microsoft document.
+	* Enable Windows Subsystem for Linux feature.
+	```cmd
+	dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+	```
+	* Enable Virtual Machine feature
+	```cmd
+	dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+	```
+	* Download and install the latest Linux kernel update package from [here](https://www.catalog.update.microsoft.com/Search.aspx?q=wsl). Its a cab file. Open and 	extract the exe file within using 7zip/winzip/winrar.
 
 ## Install
 1. [Download](https://github.com/sileshn/LinuxmintWSL/releases/latest) installer zip
