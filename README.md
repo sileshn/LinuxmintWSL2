@@ -2,16 +2,16 @@
 Linuxmintlmde on WSL2 (Windows 10 FCU or later) based on [wsldl](https://github.com/yuk7/wsldl).
 
 <a href='http://postimg.cc/NKYqch1s' target='_blank'><img src='https://i.postimg.cc/NKYqch1s/Screenshot-2022-03-02-065920.png' border='0' alt='Screenshot-2022-03-02-065920'/></a>   <a href='http://postimg.cc/ZvcPvyDD' target='_blank'><img src='https://i.postimg.cc/ZvcPvyDD/Screenshot-2022-03-02-070746.png' border='0' alt='Screenshot-2022-03-02-070746'/></a>   <a href='http://postimg.cc/5jMZvdRw' target='_blank'><img src='https://i.postimg.cc/5jMZvdRw/Screenshot-2022-03-02-065938.png' border='0' alt='Screenshot-2022-03-02-065938'/></a>   <a href='http://postimg.cc/RqQ2Lsk2' target='_blank'><img src='https://i.postimg.cc/RqQ2Lsk2/Screenshot-2022-03-02-070006.png' border='0' alt='Screenshot-2022-03-02-070006'/></a>
-[![Github All Releases](https://img.shields.io/github/downloads/sileshn/LinuxmintWSL/total.svg?style=flat-square)](https://github.com/sileshn/LinuxmintWSL/releases)
+[![Github All Releases](https://img.shields.io/github/downloads/sileshn/LinuxmintWSL2/total.svg?style=flat-square)](https://github.com/sileshn/LinuxmintWSL2/releases)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![License](https://img.shields.io/github/license/sileshn/LinuxmintWSL.svg?style=flat-square)](https://raw.githubusercontent.com/sileshn/LinuxmintWSL/main/LICENSE)
+[![License](https://img.shields.io/github/license/sileshn/LinuxmintWSL2.svg?style=flat-square)](https://raw.githubusercontent.com/sileshn/LinuxmintWSL2/main/LICENSE)
 
 ## Features and important information
-LinuxmintlmdeWSL has the following features during the installation stage.
+LinuxmintlmdeWSL2 has the following features during the installation stage.
 * Increase virtual disk size from the default 256GB
 * Create a new user and set the user as default
 
-LinuxmintlmdeWSL includes a wsl.conf file which only has section headers. Users can use this to configure the distro to their liking. You can read more about wsl.conf and its configuration settings [here](https://docs.microsoft.com/en-us/windows/wsl/wsl-config).
+LinuxmintlmdeWSL2 includes a wsl.conf file which only has section headers. Users can use this to configure the distro to their liking. You can read more about wsl.conf and its configuration settings [here](https://docs.microsoft.com/en-us/windows/wsl/wsl-config).
 
 ## Requirements
 * For x64 systems: Version 1903 or higher, with Build 18362 or higher.
@@ -34,7 +34,7 @@ LinuxmintlmdeWSL includes a wsl.conf file which only has section headers. Users 
 
 ## Install
 * Make sure all the steps mentioned under "Requirements" are completed.
-* [Download](https://github.com/sileshn/LinuxmintWSL/releases/latest) installer zip
+* [Download](https://github.com/sileshn/LinuxmintWSL2/releases/latest) installer zip
 * Extract all files in zip file to same directory
 * Set version 2 as default. Note that this step is required only for manual installation.
   ```dos
@@ -120,7 +120,7 @@ Usage :
 
 ## How to setup
 
-LinuxmintlmdeWSL will ask you to create a new user during its first run. If you chose to create a new user during initial setup, the steps below are not required unless you want to create additional users.
+LinuxmintlmdeWSL2 will ask you to create a new user during its first run. If you chose to create a new user during initial setup, the steps below are not required unless you want to create additional users.
 ```dos
 passwd
 useradd -m -g users -G sudo -s /bin/bash <username>
@@ -190,19 +190,19 @@ You may need to run the command below in some circumstances.
 Docker, tar, zip, unzip, bsdtar need to be installed.
 
 ```dos
-git clone git@gitlab.com:sileshn/LinuxmintWSL.git
-cd LinuxmintWSL
+git clone git@gitlab.com:sileshn/LinuxmintWSL2.git
+cd LinuxmintWSL2
 git checkout debian
 make
 
 ```
-Copy the LinuxmintlmdeWSL.zip file to a safe location and run the command below to clean.
+Copy the LinuxmintlmdeWSL2.zip file to a safe location and run the command below to clean.
 ```dos
 make clean
 
 ```
 
-## How to run docker in LinuxmintlmdeWSL without using docker desktop.
+## How to run docker in LinuxmintlmdeWSL2 without using docker desktop.
 
 Delete older versions of docker if installed.
 ```dos
