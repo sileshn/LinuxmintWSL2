@@ -111,6 +111,9 @@ if [ "$disksize" -le 274877906944 ]; then
 	done
 fi
 
+sudo systemctl daemon-reload
+sudo systemctl enable wslg-init.service >/dev/null 2>&1
+
 echo -e ${grn}"Do you want to create a new user?"${txtrst}
 select yn in "Yes" "No"; do
 	case $yn in
