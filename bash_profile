@@ -82,7 +82,7 @@ if [ "$disksize" -le 274877906944 ]; then
                                 echo "cmd /c start \"$WSL_DISTRO_NAME\" wsl.exe --cd ~ -d $WSL_DISTRO_NAME" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
                             fi
                             cp ~/vhdresize.txt /mnt/c/Users/Public
-                            cp ~/shutdown.cmd /mnt/c/Users/Public
+                            cp ~/shutdown.cmd /mnt/c/Users/Public && rm ~/shutdown.cmd
                             break
                         fi
                     else
@@ -137,7 +137,7 @@ select yn in "Yes" "No"; do
                         echo "cmd /c start \"$WSL_DISTRO_NAME\" wsl.exe --cd ~ -d $WSL_DISTRO_NAME" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
                     fi
                     echo "del C:\Users\Public\shutdown.cmd" | sudo tee -a ~/shutdown.cmd >/dev/null 2>&1
-                    cp ~/shutdown.cmd /mnt/c/Users/Public
+                    cp ~/shutdown.cmd /mnt/c/Users/Public && rm ~/shutdown.cmd
 
                     secs=3
                     printf ${ylw}"\nTo set the new user as the default user, LinuxmintWSL will shutdown and restart!!!\n\n"${txtrst}
