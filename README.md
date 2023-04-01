@@ -10,8 +10,8 @@ Linuxmint on WSL2 (Windows 10 FCU or later) based on [wsldl](https://github.com/
 LinuxmintWSL2 has the following features during the installation stage.
 * Increase virtual disk size from the default 256GB
 * Create a new user and set the user as default
-
-LinuxmintWSL2 includes a wsl.conf file which only has section headers. Users can use this to configure the distro to their liking. You can read more about wsl.conf and its configuration settings [here](https://docs.microsoft.com/en-us/windows/wsl/wsl-config).
+* LinuxmintWSL2 Supports systemd natively if you are running wsl v0.67.6 (more details [here](https://devblogs.microsoft.com/commandline/systemd-support-is-now-available-in-wsl/)) and above. For earlier versions of wsl, systemd is supported using diddledani's [one-script-wsl2-systemd](https://github.com/diddledani/one-script-wsl2-systemd). This is done automatically during initial setup.
+* LinuxmintWSL2 includes a wsl.conf file which only has section headers. Users can use this to configure the distro to their liking. You can read more about wsl.conf and its configuration settings [here](https://docs.microsoft.com/en-us/windows/wsl/wsl-config).
 
 ## Requirements
 * For x64 systems: Version 1903 or higher, with Build 18362 or higher.
@@ -219,6 +219,9 @@ sudo apt install docker-ce
 sudo usermod -aG docker $USER
 ```
 
-Follow [this](https://blog.nillsf.com/index.php/2020/06/29/how-to-automatically-start-the-docker-daemon-on-wsl2/) blog post for further details on how to set it up.
-
-[![Screenshot-2021-01-27-175029.png](https://i.postimg.cc/Z5vGPXwn/Screenshot-2021-01-27-175029.png)](https://postimg.cc/fVZqDqnQ)
+Follow [this](https://blog.nillsf.com/index.php/2020/06/29/how-to-automatically-start-the-docker-daemon-on-wsl2/) blog post for further details on how to set it up. Alternatively, if using systemd, use the commands below to setup and reboot.
+```dos
+sudo systemctl start docker.service
+sudo systemctl enable docker.service
+sudo usermod -aG docker $USER
+```
