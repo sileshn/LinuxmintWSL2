@@ -172,7 +172,7 @@ select yn in "Yes" "No"; do
 	esac
 done
 
-if echo $(wsl.exe --version | tr -d '\0' | sed -n 1p | cut -f3 -d " " | cut -f1 -d ".") >0 || echo $(wsl.exe --version | tr -d '\0' | sed -n 1p | cut -f3 -d " " | cut -f2 -d ".") >0 || (($(echo $(wsl.exe --version | tr -d '\0' | sed -n 1p | cut -f3 -d " " | cut -f2-3 -d ".") '>' 67.5 | bc))); then
+if echo $(/mnt/c/Windows/System32/wsl.exe --version | tr -d '\0' | sed -n 1p | cut -f3 -d " " | cut -f1 -d ".") >0 || echo $(wsl.exe --version | tr -d '\0' | sed -n 1p | cut -f3 -d " " | cut -f2 -d ".") >0 || (($(echo $(wsl.exe --version | tr -d '\0' | sed -n 1p | cut -f3 -d " " | cut -f2-3 -d ".") '>' 67.5 | bc))); then
 	commandline="systemd=true"
 	echo "$commandline" >>/etc/wsl.conf
 else
