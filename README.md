@@ -51,6 +51,7 @@ Exe filename is using the instance name to register. If you rename it you can re
 Usage :
     <no args>
       - Open a new shell with your default settings.
+        Inherit current directory (with exception that %%USERPROFILE%% is changed to $HOME).
 
     run <command line>
       - Run the given command line in that instance. Inherit current directory.
@@ -63,22 +64,24 @@ Usage :
       - `--default-uid <uid>`: Set the default user uid of this instance to <uid>.
       - `--append-path <true|false>`: Switch of Append Windows PATH to $PATH
       - `--mount-drive <true|false>`: Switch of Mount drives
+      - `--wsl-version <1|2>`: Set the WSL version of this instance to <1 or 2>
       - `--default-term <default|wt|flute>`: Set default type of terminal window.
 
-    get [setting]
+    get [setting [value]]
       - `--default-uid`: Get the default user uid in this instance.
       - `--append-path`: Get true/false status of Append Windows PATH to $PATH.
       - `--mount-drive`: Get true/false status of Mount drives.
       - `--wsl-version`: Get the version os the WSL (1/2) of this instance.
       - `--default-term`: Get Default Terminal type of this instance launcher.
+      - `--wt-profile-name`: Get Profile Name from Windows Terminal
       - `--lxguid`: Get WSL GUID key for this instance.
 
-    backup [contents]
-      - `--tar`: Output backup.tar to the current directory.
-      - `--reg`: Output settings registry file to the current directory.
-	  - `--tgz`: Output backup.tar.gz to the current directory.
-      - `--vhdx`: Output backup.ext4.vhdx to the current directory.
-      - `--vhdxgz`: Output backup.ext4.vhdx.gz to the current directory.
+    backup [file name]
+      - `*.tar`: Output backup tar file.
+      - `*.tar.gz`: Output backup tar.gz file.
+      - `*.ext4.vhdx`: Output backup ext4.vhdx file. (WSL2 only)
+      - `*.ext4.vhdx.gz`: Output backup ext4.vhdx.gz file. (WSL2 only)
+      - `*.reg`: Output settings registry file.
 
     clean
       - Uninstall that instance.
@@ -89,33 +92,33 @@ Usage :
 
 #### Just Run exe
 ```cmd
->{InstanceName}.exe
+>Mint.exe
 [root@PC-NAME user]#
 ```
 
 #### Run with command line
 ```cmd
->{InstanceName}.exe run uname -r
+>Mint.exe run uname -r
 4.4.0-43-Microsoft
 ```
 
 #### Run with command line with path translation
 ```cmd
->{InstanceName}.exe runp echo C:\Windows\System32\cmd.exe
+>Mint.exe runp echo C:\Windows\System32\cmd.exe
 /mnt/c/Windows/System32/cmd.exe
 ```
 
 #### Change Default User(id command required)
 ```cmd
->{InstanceName}.exe config --default-user user
+>Mint.exe config --default-user user
 
->{InstanceName}.exe
+>Mint.exe
 [user@PC-NAME dir]$
 ```
 
 #### Set "Windows Terminal" as default terminal
 ```cmd
->{InstanceName}.exe config --default-term wt
+>Mint.exe config --default-term wt
 ```
 
 ## How to setup
@@ -152,13 +155,13 @@ Execute the command below in a windows cmd terminal from the directory where Min
 ```
 
 ## How to backup instance
-export to backup.tar.gz
+export to backup.tar.gz (WSL1 or 2)
 ```cmd
->Mint.exe backup --tgz
+>Mint.exe backup backup.tar.gz
 ```
-export to backup.ext4.vhdx.gz
+export to backup.ext4.vhdx.gz  (WSL2 only)
 ```cmd
->Mint.exe backup --vhdxgz
+>Mint.exe backup backup.ext4.vhdx.gz
 ```
 
 ## How to restore instance
