@@ -44,16 +44,13 @@ rootfs: base.tar
 	sudo cp linuxmint.ico rootfs/usr/lib/wsl/linuxmint.ico
 	sudo cp bash_profile rootfs/root/.bash_profile
 	sudo cp wslg-init.service rootfs/usr/lib/systemd/system/wslg-init.service
-	sudo cp info rootfs/etc/linuxmint/info
-	sudo cp issue rootfs/etc/issue
-	sudo cp issue.net rootfs/etc/issue.net
 	sudo cp lsb-release rootfs/etc/lsb-release
 	sudo cp os-release rootfs/usr/lib/os-release
 	sudo chmod +x rootfs
 
 base.tar:
 	@echo -e '\e[1;31mExporting base.tar using docker...\e[m'
-	docker run --net=host --name mintwsl linuxmintd/mint22.1-amd64 /bin/bash -c "mkdir -p /etc/linuxmint; echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections; apt-get install apt-utils -y -q; apt-get update; apt-get full-upgrade -y -q; apt-get install -y -q apt-transport-https apt-utils aria2 bash-completion build-essential ca-certificates curl dialog figlet htop iputils-ping lolcat software-properties-common tree; apt-get autoremove -y; apt-get clean; mkdir -p /usr/lib/wsl"
+	docker run --net=host --name mintwsl linuxmintd/mint22.2-amd64 /bin/bash -c "mkdir -p /etc/linuxmint; echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections; apt-get install apt-utils -y -q; apt-get update; apt-get full-upgrade -y -q; apt-get install -y -q apt-transport-https apt-utils aria2 bash-completion build-essential ca-certificates curl dialog figlet htop iputils-ping lolcat software-properties-common tree; apt-get autoremove -y; apt-get clean; mkdir -p /usr/lib/wsl"
 	docker export --output=base.tar mintwsl
 	docker rm -f mintwsl
 
@@ -66,4 +63,4 @@ clean:
 	-rm rootfs.tar.gz
 	-sudo rm -r rootfs
 	-rm base.tar
-	-docker rmi -f linuxmintd/mint22.1-amd64
+	-docker rmi -f linuxmintd/mint22.2-amd64

@@ -1,7 +1,7 @@
 # LinuxmintWSL2
 Linuxmint on WSL2 (Windows 10 FCU or later) based on [wsldl](https://github.com/yuk7/wsldl).
 
-[![Screenshot-2022-07-26-061441.png](https://i.postimg.cc/qvwprLvk/Screenshot-2022-07-26-061441.png)](https://postimg.cc/9DD6ty9S)
+<a href="https://ibb.co/TB0JM4yN"><img src="https://i.ibb.co/pvKNjfqk/Screenshot-2025-05-21-051706.png" alt="Screenshot-2025-05-21-051706" border="0"></a>
 [![Github All Releases](https://img.shields.io/github/downloads/sileshn/LinuxmintWSL2/total.svg?style=flat-square)](https://github.com/sileshn/LinuxmintWSL2/releases)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![License](https://img.shields.io/github/license/sileshn/LinuxmintWSL2.svg?style=flat-square)](https://raw.githubusercontent.com/sileshn/LinuxmintWSL2/main/LICENSE)
