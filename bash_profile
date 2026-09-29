@@ -17,8 +17,6 @@ getent passwd ubuntu >/dev/null && (
     rm -rf /home/ubuntu
 )
 
-rm /etc/os-release
-ln -s /usr/lib/os-release /etc/os-release
 sudo systemctl daemon-reload
 sudo systemctl enable wslg-init.service >/dev/null 2>&1
 
