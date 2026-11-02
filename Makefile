@@ -48,7 +48,7 @@ rootfs: base.tar
 
 base.tar:
 	@echo -e '\e[1;31mExporting base.tar using docker...\e[m'
-	docker run --net=host --name mintwsl linuxmintd/mint27-amd64 /bin/bash -c "echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections; cp /etc/apt/trusted.gpg.d/linuxmint-keyring.gpg /usr/share/keyrings/linuxmint-keyring.gpg; apt modernize-sources -y; apt-get install apt-utils -y -q; apt-get update; apt-get full-upgrade -y -q; apt-get install -y -q apt-transport-https aria2 bash-completion build-essential ca-certificates curl dialog figlet htop iputils-ping lolcat software-properties-common tree; apt-get autoremove -y; apt-get clean; mkdir -p /usr/lib/wsl"
+	docker run --net=host --name mintwsl linuxmintd/mint27-amd64 /bin/bash -c "echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections; cp /etc/apt/trusted.gpg.d/linuxmint-keyring.gpg /usr/share/keyrings/linuxmint-keyring.gpg; apt modernize-sources -y; apt-get install apt-utils -y -q; apt-get update; apt-get install -y -q --allow-downgrades base-files/adrien; apt-get full-upgrade -y -q; apt-get install -y -q apt-transport-https aria2 bash-completion build-essential ca-certificates curl dialog figlet htop iputils-ping lolcat software-properties-common tree; apt-get autoremove -y; apt-get clean; mkdir -p /usr/lib/wsl"
 	docker export --output=base.tar mintwsl
 	docker rm -f mintwsl
 
