@@ -12,11 +12,8 @@ test -e /mnt/c/Users/Public/shutdown.cmd && rm /mnt/c/Users/Public/shutdown.cmd
 test -e ~/shutdown.cmd && rm ~/shutdown.cmd
 figlet -t -k -f /usr/share/figlet/mini.flf "Welcome to LinuxmintWSL" | lolcat
 echo -e "\033[33;7mDo not interrupt or close the terminal window till script finishes execution!!!\n\033[0m"
-getent passwd ubuntu >/dev/null && (
-    userdel ubuntu
-    rm -rf /home/ubuntu
-)
 
+getent passwd ubuntu >/dev/null 2>&1 && sudo userdel -r ubuntu >/dev/null 2>&1
 sudo systemctl daemon-reload
 sudo systemctl enable wslg-init.service >/dev/null 2>&1
 sudo sed -i 's|^Signed-By:\s*$|Signed-By: /usr/share/keyrings/linuxmint-keyring.gpg|' /etc/apt/sources.list.d/official-*.sources
