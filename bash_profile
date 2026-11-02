@@ -19,6 +19,7 @@ getent passwd ubuntu >/dev/null && (
 
 sudo systemctl daemon-reload
 sudo systemctl enable wslg-init.service >/dev/null 2>&1
+sudo sed -i 's|^Signed-By:\s*$|Signed-By: /usr/share/keyrings/linuxmint-keyring.gpg|' /etc/apt/sources.list.d/official-*.sources
 
 echo -e ${grn}"Do you want to create a new user?"${txtrst}
 select yn in "Yes" "No"; do
